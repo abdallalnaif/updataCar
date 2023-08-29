@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('attachments', function (Blueprint $table) {
             $table->id();
 
-            $table->enum('fileType' , ['Image' , 'Video', 'File'])->nullable();
+            $table->enum('fileType' , ['Image' , 'Video', 'File','Icon'])->nullable();
             $table->string('fileUrl')->nullable();
 
             $table->morphs('actor');

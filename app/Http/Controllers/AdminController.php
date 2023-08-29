@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\Attachment;
+use App\Models\City;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -28,9 +29,9 @@ class AdminController extends Controller
      */
     public function create()
     {
-        // $cities = City::all();
+        $cities = City::all();
         // $roles = Role::where('guard_name' , 'admin')->get();
-        return response()->view('cms.admin.create' );
+        return response()->view('cms.admin.create' ,compact('cities'));
     }
 
     /**
@@ -60,9 +61,6 @@ class AdminController extends Controller
 
         if(! $validator->fails()){
             // data in admins table
-            $model = $request->role;
-            // return $model;
-            // $admins = new $model();
             $admins = new Admin();
             $admins->email = $request->input('email');
             $admins->password = Hash::make($request->input('password'));
@@ -83,7 +81,7 @@ class AdminController extends Controller
                 $users->dob = $request->input('dob');
                 $users->gender = $request->input('gender');
                 $users->status = $request->input('status');
-                // $users->city_id = $request->input('city_id');
+                $users->city_id = $request->input('city_id');
                 $users->actor()->associate($admins);
 
                 $isSaved = $users->save();
@@ -147,9 +145,9 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        // $cities= City::all();
+        $cities= City::all();
         $admins = Admin::findOrFail($id);
-        return response()->view('cms.admin.edit' , compact('admins'));
+        return response()->view('cms.admin.edit' , compact('admins','cities'));
     }
 
     /**
@@ -197,7 +195,7 @@ class AdminController extends Controller
                 $users->dob = $request->input('dob');
                 $users->gender = $request->input('gender');
                 $users->status = $request->input('status');
-                // $users->city_id = $request->input('city_id');
+                $users->city_id = $request->input('city_id');
                 $users->actor()->associate($admins);
                 $isSaved = $users->save();
 

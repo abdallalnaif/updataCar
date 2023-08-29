@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('catch_receipts', function (Blueprint $table) {
             $table->id();
             $table->text('discrption');
-            $table->integer('price');
+            $table->float('price');
             $table->date('date');
             $table->softDeletes();
             $table->timestamps();

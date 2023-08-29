@@ -31,9 +31,9 @@
 
 
                 <div class="row">
-                    {{-- <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="form-group">
-                        <label>City</label>
+                        <label>{{ __('message.City') }}</label>
                         <select class="form-control select2" id="city_id" name="city_id"  style="width: 100%;">
                             @foreach ($cities as $city)
                             <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -42,7 +42,7 @@
 
                         </select>
                         </div>
-                    </div> --}}
+                    </div>
 
 
                     {{-- <div class="col-md-6">
@@ -209,9 +209,7 @@
         formData.append('fileUrl',document.getElementById('fileUrl').files[0] );
         formData.append('gender',document.getElementById('gender').value );
         formData.append('status',document.getElementById('status').value );
-        formData.append('role','Admin' );
-
-        // formData.append('city_id',document.getElementById('city_id').value );
+        formData.append('city_id',document.getElementById('city_id').value );
         // formData.append('role_id',document.getElementById('role_id').value );
 
         store('/cms/admins' , formData);

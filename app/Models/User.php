@@ -47,9 +47,9 @@ class User extends Authenticatable
         return $this->morphTo();
     }
 
-    public function attachment(){
-        return $this->morphOne(Attachment::class , 'actor' , 'actor_type' , 'actor_id' , 'id');
-    }
+    // public function attachment(){
+    //     return $this->morphOne(Attachment::class , 'actor' , 'actor_type' , 'actor_id' , 'id');
+    // }
 
     public function attachments(){
         return $this->morphMany(Attachment::class , 'actor' , 'actor_type' , 'actor_id' , 'id');

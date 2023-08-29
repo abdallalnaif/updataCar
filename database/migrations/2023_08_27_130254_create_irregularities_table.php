@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('numcar');
             $table->string('type_irregularty');
             $table->date('date');
-            $table->string('description');
+            $table->text('description');
             $table->string('location');
             $table->float('price');
             $table->foreignId('car_id');

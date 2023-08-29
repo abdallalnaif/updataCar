@@ -45,8 +45,8 @@
                     <td>
                       <img class="img-circle img-bordered-sm"
 
-                      @if($admin->user->attachment )
-                      src="{{asset('storage/Image/admin/'.$admin->user->attachment->fileUrl)}}"
+                      @if($admin->user->attachments )
+                      src="{{asset('storage/Image/admin/'.$admin->user->attachments[0]->fileUrl)}}"
                       @else
                       src=""
                       @endif
@@ -98,6 +98,6 @@
         confirmDestroy('/cms/admins/'+id  ,reference );
 
     }
-    window.print();
+
     </script>
 @endsection
