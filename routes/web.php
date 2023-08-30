@@ -5,11 +5,16 @@ use App\Http\Controllers\AssetController;
 use App\Http\Controllers\CatchReceiptController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\ModelPermissionController;
+use App\Http\Controllers\ModelRoleController;
 use App\Http\Controllers\TrashCatchReceiptsController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\userAuthController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RolePermissionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,9 +43,25 @@ Route::prefix('cms')->middleware('guest:user')->group(function(){
 
 // for Admin Control
 Route::prefix('cms')->middleware('auth:user')->group(function(){
+
+    // Authentication
     Route::get('home' , [UserController::class , 'index'])->name('home');
     Route::get('logout' , [userAuthController::class , 'logout'])->name('logout');
 
+
+    // Authorization
+    Route::resource('roles' , RoleController::class);
+    Route::post('roles-update/{id}' , [RoleController::class , 'update'])->name('roles-update');
+
+    Route::resource('permissions' , PermissionController::class);
+    Route::post('permissions-update/{id}' , [PermissionController::class , 'update'])->name('permissions-update');
+
+    Route::resource('roles.permissions' , RolePermissionController::class);
+    Route::resource('model.permissions' , ModelPermissionController::class);
+    Route::resource('model.role' , ModelRoleController::class);
+
+
+    // cms
     Route::resource('attachments' , AttachmentController::class);
     Route::post('attachments-update/{id}' , [AttachmentController::class , 'update'])->name('attachments-update');
 

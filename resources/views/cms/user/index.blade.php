@@ -39,6 +39,7 @@
                 <th>{{ __('message.image') }}</th>
                 <th>{{ __('message.name') }}</th>
                 <th>{{ __('message.email') }}</th>
+                <th>{{ __('message.Role Name') }}</th>
                 <th>{{ __('message.status') }}</th>
                 <th>{{ __('message.City') }}</th>
                 <th>{{ __('message.setting') }}</th>
@@ -64,8 +65,19 @@
 
                     <td>{{ $user->first_name ?? ""}} {{ $user->last_name ?? ""}}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->status ?? ""}}</td>
-                    <td><span class="badge bg-success"> {{$user->city->name ?? ""}}</span></td>
+
+                    <td><a href="{{route('roles.permissions.index', $user->roles->first()->id)}}"
+                        class="btn btn-info">{{ $roleName = $user->roles->first()->name }} ( {{$user->roles->first()->permissions->count()}} )
+                        </a>
+                    </td>
+
+                    @if ($user->status == "Active") 
+                    <td><span class="badge bg-success"> {{$user->status}}</span></td>
+                    @else
+                    <td><span class="badge bg-danger"> {{$user->status}}</span></td>
+                    @endif
+
+                    <td>{{$user->city->name ?? ""}}</td>
 
 
                     <td>

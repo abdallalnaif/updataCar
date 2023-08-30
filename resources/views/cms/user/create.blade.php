@@ -66,9 +66,9 @@
                         @enderror
                       </div>
 
-                    {{-- <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="form-group">
-                        <label>Role NAme</label>
+                        <label>{{ __('message.Role Name') }}</label>
                         <select class="form-control select2" id="role_id" name="role_id"  style="width: 100%;">
                             @foreach ($roles as $role)
                             <option value="{{ $role->id }}">{{ $role->name }}</option>
@@ -77,7 +77,7 @@
 
                         </select>
                         </div>
-                    </div> --}}
+                    </div>
 
                 </div>
 
@@ -239,7 +239,7 @@
         formData.append('status',document.getElementById('status').value );
         formData.append('address',document.getElementById('address').value );
         formData.append('city_id',document.getElementById('city_id').value );
-        // formData.append('role_id',document.getElementById('role_id').value );
+        formData.append('role_id',document.getElementById('role_id').value );
 
         store('/cms/users' , formData);
     }

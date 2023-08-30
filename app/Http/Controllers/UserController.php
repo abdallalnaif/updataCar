@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -30,8 +31,8 @@ class UserController extends Controller
     public function create()
     {
         $cities = City::all();
-        // $roles = Role::where('guard_name' , 'admin')->get();
-        return response()->view('cms.user.create' ,compact('cities'));
+        $roles = Role::all();
+        return response()->view('cms.user.create' ,compact('cities','roles'));
     }
 
     /**
@@ -54,6 +55,7 @@ class UserController extends Controller
             'gender' => 'required' ,
             'status' => 'required' ,
             'city_id' => 'required' ,
+            'role_id' => 'required' ,
         ];
 
         $messages = [
@@ -77,6 +79,10 @@ class UserController extends Controller
             $users-> gender = $request->get('gender');
             $users-> status = $request->get('status');
             $users-> city_id = $request->get('city_id');
+
+            $roles = Role::findOrFail($request->get('role_id'));
+            $users->assignRole($roles->name);
+
             $isSaved = $users->save();
             if(!$isSaved){
                 return redirect()->back()->with(['error' => 'مشكلة في حفظ بيانات المستخدم']);
@@ -150,7 +156,8 @@ class UserController extends Controller
     {
         $cities= City::all();
         $users = User::findOrFail($id);
-        return response()->view('cms.user.edit' , compact('users','cities'));
+        $roles = Role::all();
+        return response()->view('cms.user.edit' , compact('users','cities','roles'));
     }
 
     /**
@@ -162,7 +169,6 @@ class UserController extends Controller
      */
     public function update(Request $request , $id)
     {
-
         $rules = [
             'first_name' => 'required' ,
             'last_name' => 'required' ,
@@ -176,6 +182,7 @@ class UserController extends Controller
             'city_id' => 'required' ,
             'fileUrl' => 'nullable' ,
             'fileType' => 'nullable' ,
+            'role_id' => 'required' ,
         ];
 
         $messages = [
@@ -199,6 +206,10 @@ class UserController extends Controller
             $users-> gender = $request->get('gender');
             $users-> status = $request->get('status');
             $users-> city_id = $request->get('city_id');
+
+            $roles = Role::findOrFail($request->get('role_id'));
+            $users->syncRoles([$roles->name]);
+
             $isUpdated = $users->save();
 
             if(!$isUpdated){

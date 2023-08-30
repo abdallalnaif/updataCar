@@ -73,18 +73,23 @@
                         @enderror
                       </div>
 
-                    {{-- <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="form-group">
-                        <label>Role NAme</label>
+                        <label>{{ __('message.Role Name') }}</label>
                         <select class="form-control select2" id="role_id" name="role_id"  style="width: 100%;">
                             @foreach ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            <option 
+                                @if($users->roles->first()->id == $role->id)
+                                    selected
+                                @endif 
+                                value="{{ $role->id }}">{{ $role->name }}
+                            </option>
 
                             @endforeach
 
                         </select>
                         </div>
-                    </div> --}}
+                    </div>
 
                 </div>
 

@@ -161,7 +161,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="" class="brand-link">
       <img src="{{asset('cms/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">{{__('message.APP_NAME')}}</span>
@@ -172,10 +172,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('cms/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('storage/Image/user/' . Auth::user()->attachments->first()->url) }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <h6>" {{ Auth::user()->roles->first()->name }} "</h6></a>
         </div>
       </div>
 
@@ -186,6 +186,8 @@
                with font-awesome or any other icon font library -->
 
 
+@canany(['Index-User','Create-User'])
+    
 
                <li class="nav-header">{{ __('message.User Mangment') }}</li>
 
@@ -200,25 +202,31 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
+                    @can('Index-User')
                     <a href="{{ route('users.index') }}" class="nav-link">
                       <i class="fas fa-list nav-icon"></i>
                       <p>{{ __('message.index') }}</p>
                     </a>
                   </li>
+                  @endcan
 
+                  @can('Create-User')
                   <li class="nav-item">
                     <a href="{{ route('users.create') }}" class="nav-link">
                       <i class="fas fa-plus nav-icon"></i>
                       <p>{{ __('message.create') }}</p>
                     </a>
                   </li>
+                  @endcan
 
                 </ul>
               </li>
 
+@endcanany
 
+@canany(['Index-Country','Create-Country','Index-City','Create-City','Index-Car','Create-Car'])
                <li class="nav-header">{{ __('message.Content Mangment') }}</li>
-
+               @canany(['Index-Country','Create-Country'])
                <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-user-tag"></i>
@@ -228,23 +236,29 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
+                    @can('Index-Country')
                   <li class="nav-item">
                     <a href="{{ route('countries.index') }}" class="nav-link">
                       <i class="fas fa-list nav-icon"></i>
                       <p>{{ __('message.index') }}</p>
                     </a>
                   </li>
+                  @endcan
 
+                  @can('Create-Country')
                   <li class="nav-item">
                     <a href="{{ route('countries.create') }}" class="nav-link">
                       <i class="fas fa-plus nav-icon"></i>
                       <p>{{ __('message.create') }}</p>
                     </a>
                   </li>
+                    @endcan
 
                 </ul>
               </li>
+              @endcanany
 
+              @canany(['Index-City','Create-City'])
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-user-tag"></i>
@@ -254,23 +268,29 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
+                    @can('Index-City')
                   <li class="nav-item">
                     <a href="{{ route('cities.index') }}" class="nav-link">
                       <i class="fas fa-list nav-icon"></i>
                       <p>{{ __('message.index') }}</p>
                     </a>
                   </li>
+                  @endcan
 
+                  @can('Create-City')
                   <li class="nav-item">
                     <a href="{{ route('cities.create') }}" class="nav-link">
                       <i class="fas fa-plus nav-icon"></i>
                       <p>{{ __('message.create') }}</p>
                     </a>
                   </li>
+                @endcan
 
                 </ul>
               </li>
+                @endcanany
 
+                @canany(['Index-Car','Create-Car'])
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-user-tag"></i>
@@ -280,22 +300,27 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
+                    @can('Index-Car')
                   <li class="nav-item">
                     <a href="{{ route('cars.index') }}" class="nav-link">
                       <i class="fas fa-list nav-icon"></i>
                       <p>{{ __('message.index') }}</p>
                     </a>
                   </li>
+                  @endcan
 
+                @can('Create-Car')
                   <li class="nav-item">
                     <a href="{{ route('cars.create') }}" class="nav-link">
                       <i class="fas fa-plus nav-icon"></i>
                       <p>{{ __('message.create') }}</p>
                     </a>
                   </li>
-
+                  @endcan
                 </ul>
               </li>
+              @endcanany
+@endcanany
 {{--
               <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -326,10 +351,9 @@
               </li>
 
 
-
-
-
+ @canany(['Index-AnotherExpense','Create-AnotherExpense','Index-CatchReceipt','Create-CatchReceipt','Index-Asset','Create-Asset'])
                <li class="nav-header">{{ __('message.Business office') }}</li>
+               @canany(['Index-AnotherExpense','Create-AnotherExpense'])               
                <li class="nav-item">
                  <a href="#" class="nav-link">
                    <i class="nav-icon fas fa-city"></i>
@@ -340,9 +364,7 @@
                    </p>
                  </a>
                  <ul class="nav nav-treeview">
-
-
-
+                    @can('Index-AnotherExpense')
                    <li class="nav-item">
                      <a href="{{ route('anotherexpenses.index') }}" class="nav-link">
                        <i class="fas fa-list nav-icon"></i>
@@ -350,7 +372,9 @@
                        <p>{{ __('message.index') }}</p>
                      </a>
                    </li>
+                   @endcan
 
+                    @can('Create-AnotherExpense')
                    <li class="nav-item">
                      <a href="{{ route('anotherexpenses.create') }}" class="nav-link">
                        <i class="fas fa-plus nav-icon"></i>
@@ -358,12 +382,14 @@
                        <p>{{ __('message.create') }}</p>
                      </a>
                    </li>
+                   @endcan
 
                  </ul>
                </li>
 
+            @endcanany
 
-
+            @canany(['Index-CatchReceipt','Create-CatchReceipt'])
                <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-city"></i>
@@ -376,7 +402,7 @@
                 <ul class="nav nav-treeview">
 
 
-
+                    @can(['Index-CatchReceipt'])
                   <li class="nav-item">
                     <a href="{{ route('catchreceipts.index') }}" class="nav-link">
                       <i class="fas fa-list nav-icon"></i>
@@ -384,7 +410,9 @@
                       <p>{{ __('message.index') }}</p>
                     </a>
                   </li>
+                    @endcan
 
+                    @canany(['Create-CatchReceipt'])
                   <li class="nav-item">
                     <a href="{{ route('catchreceipts.create') }}" class="nav-link">
                       <i class="fas fa-plus nav-icon"></i>
@@ -393,8 +421,12 @@
                     </a>
                   </li>
 
+                  @endcan
                 </ul>
               </li>
+            @endcanany
+
+            @canany(['Index-Asset','Create-Asset'])
 
 
               <li class="nav-item">
@@ -429,40 +461,27 @@
                 </ul>
               </li>
 
-
-
-              <li class="nav-header">settings</li>
+              @endcanany
+@endcanany
 
               {{--  --}}
-              <li class="nav-item">
-               <a href="#" class="nav-link">
-                 <i class="nav-icon fas fa-user-tag"></i>
-                 <p>
-                   Edit Profile
-                   <i class="fas fa-angle-left right"></i>
-                 </p>
-               </a>
-               <ul class="nav nav-treeview">
-                 <li class="nav-item">
-                   <a href="{{ route('users.index') }}" class="nav-link">
-                     <i class="fas fa-list nav-icon"></i>
-                     <p>{{ __('message.index') }}</p>
-                   </a>
-                 </li>
+        <li class="nav-header">الاعدادات</li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-circle text-warning"></i>
+              <p class="text">الملف الشخصي</p>
+            </a>
+          </li>
 
-                 <li class="nav-item">
-                   <a href="{{ route('users.create') }}" class="nav-link">
-                     <i class="fas fa-plus nav-icon"></i>
-                     <p>{{ __('message.create') }}</p>
-                   </a>
-                 </li>
+          <li class="nav-item">
+            <a href="{{ route('logout') }}" class="nav-link">
+              <i class="nav-icon far fa-circle text-danger"></i>
+              <p>تسجيل الخروج</p>
+            </a>
+          </li>
 
-               </ul>
-             </li>
-
-
-
-
+          
+          <br><br><br>
 
 
         </ul>

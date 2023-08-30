@@ -60,6 +60,7 @@
   'last_name' => 'Last Name',
   'icon' => 'Icon',
   'Edit User' => 'Edit User',
+  'Role Name' => 'Role Name',
 
 
 
