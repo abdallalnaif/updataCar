@@ -9,6 +9,7 @@ use App\Http\Controllers\TrashCatchReceiptsController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\userAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,8 +30,16 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
+Route::prefix('cms')->middleware('guest:user')->group(function(){
+    Route::get('login' , [userAuthController::class , 'showLogin'])->name('login.show');
+    Route::post('login' , [UserAuthController::class , 'login']);
+});
+
+
 // for Admin Control
-Route::prefix('cms/')->group(function(){
+Route::prefix('cms')->middleware('auth:user')->group(function(){
+    Route::get('home' , [UserController::class , 'index'])->name('home');
+    Route::get('logout' , [userAuthController::class , 'logout'])->name('logout');
 
     Route::resource('attachments' , AttachmentController::class);
     Route::post('attachments-update/{id}' , [AttachmentController::class , 'update'])->name('attachments-update');
