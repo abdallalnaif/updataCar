@@ -1,6 +1,7 @@
 <?php
  return [
   'User Mangment'=>' إدارة المستخدمين',
+  'User'=>'المستخدمين',
   'Admin'=>'الأدمن',
   'index'=>'عرض الكل',
   'create'=>'أضافة',
@@ -19,6 +20,7 @@
   'Business office' => 'أعمال مكتبية',
   'Another Expense' => 'حسابات أخرى',
   'Country'=>'الدولة',
+  'Add New User'=>'اضافة مستخدم جديد',
 
 
 //   index admin
@@ -54,5 +56,12 @@
 
   'Irregularity'=>'مخالفات',
   'cars'=>'سيارات',
+
+  'first_name' => 'الاسم الأول',
+'last_name' => 'اسم العائلة',
+'icon' => 'شعار',
+'Edit User' => 'تعديل بيانات المستخدم',
+
+
  ];
 ?>

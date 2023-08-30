@@ -1,10 +1,10 @@
 @extends('cms.parent')
 
-@section('title' , 'Create Admin')
+@section('title' , 'Create User')
 
-@section('main_title' , 'Create Admin')
+@section('main_title' , 'Create User')
 
-@section('sub_title' , 'Create Admin')
+@section('sub_title' , 'Create User')
 
 
 @section('styles')
@@ -21,15 +21,26 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header ">
-              <h3 class="card-title">{{ __('message.Add New Admin') }}</h3>
+              <h3 class="card-title ">{{ __('message.Add New User') }}</h3>
             </div>
             <!-- /.card-header -->
+
+            @if (Session::has('success'))
+                <div class="alert alert-success session_alert" >
+                    {{ Session::get('success') }}
+                </div>
+            @elseif (Session::has('error'))
+            <div class="alert alert-danger session_alert" >
+                {{ Session::get('error') }}
+            </div>
+            @endif
+
             <!-- form start -->
-            <form>
+            <form method="POST" id="store_form" action="{{ route('users.store') }}" enctype="multipart/form-data">
+
+                @csrf
 
               <div class="card-body">
-
-
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -41,9 +52,19 @@
                             @endforeach
 
                         </select>
+                        @error('city_id')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
                         </div>
                     </div>
 
+                    <div class="form-group col-md-6">
+                        <label for="address">{{ __('message.address') }}</label>
+                          <input type="text" class="form-control" name="address" id="address" >
+                          @error('address')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                      </div>
 
                     {{-- <div class="col-md-6">
                         <div class="form-group">
@@ -62,14 +83,28 @@
 
                 <div class="row">
 
-                    <div class="form-group col-md-6">
-                        <label for="name">{{ __('message.name') }}</label>
-                        <input type="text" class="form-control" name="name" id="name" >
+                    <div class="form-group col-md-4">
+                        <label for="first_name">{{ __('message.first_name') }}</label>
+                        <input type="text" class="form-control" name="first_name" id="first_name" >
+                        @error('first_name')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
+                        <label for="last_name">{{ __('message.last_name') }}</label>
+                        <input type="text" class="form-control" name="last_name" id="last_name" >
+                        @error('last_name')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="form-group col-md-4">
                         <label for="identity">{{ __('message.identity') }}</label>
                         <input type="number" class="form-control" name="identity" id="identity" >
+                        @error('identity')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
                     </div>
                 </div>
 
@@ -77,10 +112,16 @@
                     <div class="form-group col-md-6">
                         <label for="email">{{ __('message.email') }}</label>
                         <input type="email" class="form-control" name="email" id="email" >
+                        @error('email')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
                     </div>
                     <div class="form-group col-md-6">
                         <label for="password">{{ __('message.password') }}</label>
                         <input type="password" class="form-control" name="password" id="password" >
+                        @error('password')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
                     </div>
                 </div>
 
@@ -88,29 +129,38 @@
                     <div class="form-group col-md-6">
                       <label for="mobile">{{ __('message.mobile') }}</label>
                         <input type="text" class="form-control" name="mobile" id="mobile" >
+                        @error('mobile')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="address">{{ __('message.address') }}</label>
-                        <input type="text" class="form-control" name="address" id="address" >
+                        <label for="birth_date">{{ __('message.dob') }}</label>
+                        <input type="date" class="form-control" name="birth_date" id="birth_date" placeholder="Enter date of birthday of User">
+                        @error('birth_date')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="dob">{{ __('message.dob') }}</label>
-                        <input type="date" class="form-control" name="dob" id="dob" placeholder="Enter date of birthday of Admin">
-                    </div>
-                    <div class="form-group col-md-3">
                         <label for="fileType">{{ __('message.file type') }}</label>
                         <select name="fileType" id="fileType" class="form-select form-select-sm" style="width: 100%;">
                             <option value="Image">{{ __('message.image') }}</option>
                             <option value="Video">{{ __('message.video') }}</option>
                             <option value="File">{{ __('message.file') }}</option>
+                            <option value="Icon">{{ __('message.icon') }}</option>
                         </select>
+                        @error('fileType')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-6">
                         <label for="fileUrl">{{__('message.Choose File')}}</label>
                         <input type="file" class="form-control" name="fileUrl" id="fileUrl" placeholder="Enter url of file">
+                        @error('fileUrl')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
 
@@ -122,14 +172,20 @@
                         <option value="Male">{{ __('message.male') }}</option>
                         <option value="Female">{{ __('message.female') }}</option>
                     </select>
+                    @error('gender')
+                    <small class="form-text text-danger">{{ $message }}</small>
+                @enderror
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="status">{{ __('message.status') }}</label>
                     <select name="status" id="status" class="form-select form-select-sm" style="width: 100%;">
                         <option value="Active">{{ __('message.active') }}</option>
-                        <option value="Inactive">{{ __('message.inActive') }}</option>
+                        <option value="InActive">{{ __('message.inActive') }}</option>
                     </select>
+                    @error('status')
+                    <small class="form-text text-danger">{{ $message }}</small>
+                @enderror
                 </div>
 
             </div>
@@ -137,42 +193,13 @@
             </div>
 
               </div>
-              <!-- /.card-body -->
-
-{{--
-              <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                    <label>Languages</label>
-                    <select class="form-control select2" id="language_id" name="language_id[]"  style="width: 100%;">
-                        @foreach ($languages as $language)
-                        <option value="{{ $language->id }}">{{ $language->name }}</option>
-
-                        @endforeach
-
-                    </select>
-                    </div>
-                </div>
-
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                    <label>language level</label>
-                    <select class="form-control select2" id="level" name="level"  style="width: 100%;">
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                    </select>
-                    </div>
-                </div> --}}
-
             </div>
 
 
               <div class="card-footer">
-                <button type="button" onclick="performStore()" class="btn btn-primary">{{ __('message.store') }}</button>
+                <button type="submit" id="store_btn"  class="btn btn-primary">{{ __('message.store') }}</button>
 
-                <a href="{{route('admins.index')}}" type="submit" class="btn btn-info">{{ __('message.cancel') }}</a>
+                <a href="{{route('users.index')}}" type="submit" class="btn btn-info">{{ __('message.cancel') }}</a>
 
               </div>
             </form>
@@ -194,26 +221,69 @@
 
 @section('scripts')
 
+
 <script>
      function performStore(){
         let formData = new FormData();
 
-        formData.append('name',document.getElementById('name').value );
+        formData.append('first_name',document.getElementById('first_name').value );
+        formData.append('last_name',document.getElementById('last_name').value );
         formData.append('identity',document.getElementById('identity').value );
         formData.append('email',document.getElementById('email').value );
         formData.append('password',document.getElementById('password').value );
         formData.append('mobile',document.getElementById('mobile').value );
-        formData.append('address',document.getElementById('address').value );
-        formData.append('dob',document.getElementById('dob').value );
+        formData.append('birth_date',document.getElementById('birth_date').value );
         formData.append('fileType',document.getElementById('fileType').value );
         formData.append('fileUrl',document.getElementById('fileUrl').files[0] );
         formData.append('gender',document.getElementById('gender').value );
         formData.append('status',document.getElementById('status').value );
+        formData.append('address',document.getElementById('address').value );
         formData.append('city_id',document.getElementById('city_id').value );
         // formData.append('role_id',document.getElementById('role_id').value );
 
-        store('/cms/admins' , formData);
+        store('/cms/users' , formData);
     }
 </script>
+
+
+<script>
+    setTimeout(function() {
+        $('.session_alert').fadeOut('slow');
+    }, 3000); // 5000 milliseconds (5 seconds)
+</script>
+
+
+
+{{-- <script>
+
+$(document).on('click' , '#store_btn' , function(e){
+    e.preventDefault();
+    var formData = new FormData($('#store_form')[0]);
+
+    $.ajax({
+        type : 'POST',
+        url : '{{ route('users.store') }}',
+        enctype : 'multipart/form-data',
+        data : formData,
+
+        processData : false,
+        contentType : false,
+        cache : false,
+
+        success : function(data){
+            if(data.icon == true){
+                $('#success_msg span').text(data.title);
+                $('#success_msg').show()
+            }
+        },
+        error : function(data){
+
+        },
+    });
+})
+
+</script> --}}
+
+
 
 @endsection

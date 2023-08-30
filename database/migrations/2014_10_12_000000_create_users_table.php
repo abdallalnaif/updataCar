@@ -16,15 +16,19 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
-            $table->bigInteger('identity')->unique();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('identity')->unique();
             $table->string('mobile');
             $table->string('address');
-            $table->date('dob');
+            $table->date('birth_date');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->enum('gender' , ['Male' , 'Female']);
-            $table->enum('status' , ['Active' , 'Inactive']);
+            $table->enum('status' , ['Active' , 'InActive']);
 
-            $table->morphs('actor');
+            // $table->foreignId('city_id');
+            // $table->foreign('city_id')->on('cities')->references('id')->cascadeOnDelete();
 
             $table->timestamps();
         });

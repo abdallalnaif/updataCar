@@ -13,8 +13,4 @@ class Attachment extends Model
         return $this->morphTo();
     }
 
-    // public function actors(){
-    //     return $this->morphToMany();
-    // }
-
 }

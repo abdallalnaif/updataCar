@@ -18,9 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'first_name','last_name','identity','mobile',
+        'address','birth_date','email','password',
+        'gender','status','city_id',
     ];
 
     /**
@@ -42,24 +42,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-    public function actor(){
-        return $this->morphTo();
+    public function city(){
+        return $this->belongsTo(City::class);
     }
 
-    // public function attachment(){
-    //     return $this->morphOne(Attachment::class , 'actor' , 'actor_type' , 'actor_id' , 'id');
-    // }
+    public function cars(){
+        return $this->hasMany(Car::class);
+    }
 
     public function attachments(){
         return $this->morphMany(Attachment::class , 'actor' , 'actor_type' , 'actor_id' , 'id');
     }
 
-
-
-    // public function city(){
-    //     return $this->belongsTo(City::class);
-    // }
 
 
 

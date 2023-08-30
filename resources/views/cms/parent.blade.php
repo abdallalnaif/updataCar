@@ -189,181 +189,25 @@
 
                <li class="nav-header">{{ __('message.User Mangment') }}</li>
 
+               {{-- user --}}
                <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-user-tag"></i>
                   <p>
-                    {{ __('message.Admin') }}
+                    {{ __('message.User') }}
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ route('admins.index') }}" class="nav-link">
+                    <a href="{{ route('users.index') }}" class="nav-link">
                       <i class="fas fa-list nav-icon"></i>
                       <p>{{ __('message.index') }}</p>
                     </a>
                   </li>
 
                   <li class="nav-item">
-                    <a href="{{ route('admins.create') }}" class="nav-link">
-                      <i class="fas fa-plus nav-icon"></i>
-                      <p>{{ __('message.create') }}</p>
-                    </a>
-                  </li>
-
-                </ul>
-              </li>
-
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-user-tag"></i>
-                  <p>
-                    {{ __('message.Accountant') }}
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{ route('admins.index') }}" class="nav-link">
-                      <i class="fas fa-list nav-icon"></i>
-                      <p>{{ __('message.index') }}</p>
-                    </a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="{{ route('admins.create') }}" class="nav-link">
-                      <i class="fas fa-plus nav-icon"></i>
-                      <p>{{ __('message.create') }}</p>
-                    </a>
-                  </li>
-
-                </ul>
-              </li>
-
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-user-tag"></i>
-                  <p>
-                    {{ __('message.Customer') }}
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{ route('admins.index') }}" class="nav-link">
-                      <i class="fas fa-list nav-icon"></i>
-                      <p>{{ __('message.index') }}</p>
-                    </a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="{{ route('admins.create') }}" class="nav-link">
-                      <i class="fas fa-plus nav-icon"></i>
-                      <p>{{ __('message.create') }}</p>
-                    </a>
-                  </li>
-
-                </ul>
-              </li>
-
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-user-tag"></i>
-                  <p>
-                    {{ __('message.Employee') }}
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{ route('admins.index') }}" class="nav-link">
-                      <i class="fas fa-list nav-icon"></i>
-                      <p>{{ __('message.index') }}</p>
-                    </a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="{{ route('admins.create') }}" class="nav-link">
-                      <i class="fas fa-plus nav-icon"></i>
-                      <p>{{ __('message.create') }}</p>
-                    </a>
-                  </li>
-
-                </ul>
-              </li>
-
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-user-tag"></i>
-                  <p>
-                    {{ __('message.Investor') }}
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{ route('admins.index') }}" class="nav-link">
-                      <i class="fas fa-list nav-icon"></i>
-                      <p>{{ __('message.index') }}</p>
-                    </a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="{{ route('admins.create') }}" class="nav-link">
-                      <i class="fas fa-plus nav-icon"></i>
-                      <p>{{ __('message.create') }}</p>
-                    </a>
-                  </li>
-
-                </ul>
-              </li>
-
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-user-tag"></i>
-                  <p>
-                    {{ __('message.Supplier') }}
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{ route('admins.index') }}" class="nav-link">
-                      <i class="fas fa-list nav-icon"></i>
-                      <p>{{ __('message.index') }}</p>
-                    </a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="{{ route('admins.create') }}" class="nav-link">
-                      <i class="fas fa-plus nav-icon"></i>
-                      <p>{{ __('message.create') }}</p>
-                    </a>
-                  </li>
-
-                </ul>
-              </li>
-
-
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-user-tag"></i>
-                  <p>
-                    {{ __('message.MediaMan') }}
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{ route('admins.index') }}" class="nav-link">
-                      <i class="fas fa-list nav-icon"></i>
-                      <p>{{ __('message.index') }}</p>
-                    </a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="{{ route('admins.create') }}" class="nav-link">
+                    <a href="{{ route('users.create') }}" class="nav-link">
                       <i class="fas fa-plus nav-icon"></i>
                       <p>{{ __('message.create') }}</p>
                     </a>
@@ -677,6 +521,7 @@
 <script src="{{ asset('cms/build/js/crud.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 @yield('scripts')
 </body>
 </html>

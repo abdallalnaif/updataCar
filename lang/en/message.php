@@ -1,6 +1,7 @@
 <?php
  return [
   'User Mangment'=>'User Mangment',
+  'User'=>'User',
   'Admin'=>'Admin',
   'index'=>'index',
   'create'=>'create',
@@ -19,6 +20,7 @@
   'Business office' => 'Business office',
   'Another Expense' => 'Another Expense',
   'Country' => 'Country',
+  'Add New User' => 'Add New User',
 
 //   index admin
   'Add New Admin'=>'Add New Admin',
@@ -53,6 +55,12 @@
 
   'Irregularity'=>'Irregularities',
   'cars'=>'Cars',
+
+  'first_name' => 'First Name',
+  'last_name' => 'Last Name',
+  'icon' => 'Icon',
+  'Edit User' => 'Edit User',
+
 
 
  ];

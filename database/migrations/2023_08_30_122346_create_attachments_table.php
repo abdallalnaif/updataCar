@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('attachments', function (Blueprint $table) {
             $table->id();
+
+            $table->enum('type',['Image','Video','Icon','File']);
+            $table->string('url');
+
+            $table->morphs('actor');
 
             $table->timestamps();
         });
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('attachments');
     }
 };

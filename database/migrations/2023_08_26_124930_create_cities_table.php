@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
+
             $table->string('name');
             $table->string('street');
+
             $table->foreignId('country_id');
             $table->foreign('country_id')->on('countries')->references('id')->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
